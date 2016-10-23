@@ -27,13 +27,15 @@ scroll_bar = tkinter.Scrollbar(base_window, command=chat_log.yview, cursor="hear
 chat_log['yscrollcommand'] = scroll_bar.set
 
 send_button = tkinter.Button(base_window, font=30, text="Send", width="12", height="5",
-                             bd=0, bg="#FFBF00", activebackground="#FACC2E", command=ClickAction)
+                             bd=0, bg="#FFBF00", activebackground="#FACC2E")  # command=ClickAction
 
-entry_box = tkinter.Text(base, bd=0, bg="white", width="29", height="5", font="Arial")
-entry_box.bind("<Return>", DisableEntry)
-entry_box.bind("<KeyRelease-Return>", PressAction)
+entry_box = tkinter.Text(base_window, bd=0, bg="white", width="29", height="5", font="Arial")
+#  entry_box.bind("<Return>", DisableEntry)
+#  entry_box.bind("<KeyRelease-Return>", PressAction)
 
 scroll_bar.place(x=376, y=6, height=386)
 chat_log.place(x=6, y=6, height=386, width=370)
 entry_box.place(x=128, y=401, height=90, width=265)
 send_button.place(x=6, y=401, height=90)
+
+base_window.mainloop()
