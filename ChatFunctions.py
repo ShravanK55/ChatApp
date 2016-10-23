@@ -4,6 +4,15 @@ import re
 import urllib
 
 
+def load_connection_info(chat_log, entry_text):
+    if entry_text != '':
+        chat_log.config(state=tkinter.NORMAL)
+        if chat_log.index('end') != None:
+            chat_log.insert(tkinter.END, entry_text + "\n")
+            chat_log.config(state=tkinter.DISABLED)
+            chat_log.yview(tkinter.END)
+
+
 def load_user_entry(chat_log, entry_text):
     if entry_text != '':
         chat_log.config(state=tkinter.NORMAL)

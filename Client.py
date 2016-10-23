@@ -5,10 +5,8 @@ import threading
 # Host Socket Setup
 host = '127.0.0.1'
 port = 8001
-conn = ''
 
-host_socket = socket(AF_INET, SOCK_STREAM)
-host_socket.bind((host, port))
+client_socket = socket(AF_INET, SOCK_STREAM)
 
 
 # Mouse Events
@@ -17,7 +15,7 @@ def click_action():
     load_user_entry(chat_log, entry_text)
     chat_log.yview(tkinter.END)
     entry_box.delete("0.0", tkinter.END)
-    conn.sendall(bytes(entry_text, "UTF-8"))
+    client_socket.sendall(bytes(entry_text, "UTF-8"))
 
 
 # Keyboard Events
@@ -57,24 +55,28 @@ entry_box.place(x=128, y=401, height=90, width=265)
 send_button.place(x=6, y=401, height=90)
 
 
-def get_connected():
-    host_socket.listen(1)
-    global conn
-    conn, addr = host_socket.accept()
-    load_connection_info(chat_log, "Connected with: " + str(addr) + "\n-------------------------------")
+def receive_data():
+    try:
+        client_socket.connect((host, port))
+        load_connection_info(chat_log, "Successfully connected!\n-------------------------------")
+    except:
+        load_connection_info(chat_log, "Unable to connect.\n")
+        return
 
     while 1:
         try:
-            data = conn.recv(1024)
-            load_partner_entry(chat_log, data.decode("UTF-8"))
-
+            data = client_socket.recv(1024)
         except:
-            load_connection_info(chat_log, "Your partner has disconnected!\n Waiting for partner to connect...\n")
-            get_connected()
+            load_connection_info(chat_log, "The host has disconnected...\n")
+            break
 
-    conn.close()
+        if data != '':
+            load_partner_entry(chat_log, data.decode("UTF-8"))
+        else:
+            load_connection_info(chat_log, "The host has disconnected...\n")
+            break
 
 
-threading._start_new_thread(get_connected, ())
+threading._start_new_thread(receive_data, ())
 
 base_window.mainloop()  # Main window loop
