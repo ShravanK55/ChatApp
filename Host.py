@@ -1,9 +1,5 @@
 from ChatFunctions import *
 from socket import *
-import tkinter
-import re
-import urllib
-import threading
 
 
 # Host Socket Setup
@@ -18,7 +14,7 @@ host_socket.bind((host, port))
 # Mouse Events
 def click_action():
     entry_text = entry_box.get("0.0", tkinter.END)
-    load_my_entry(chat_log, entry_text)
+    load_user_entry(chat_log, entry_text)
     chat_log.yview(tkinter.END)
     entry_box.delete("0.0", tkinter.END)
 
