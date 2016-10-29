@@ -44,10 +44,10 @@ def receive_data():
             break
 
 
-receivingThread = threading.Thread(target=receive_data)
-receivingThread.start()
+receivingThread = threading.Thread(target=receive_data, daemon=True)
 
 
 if __name__ == '__main__':
+    receivingThread.start()
     dialog.show()
     sys.exit(app.exec_())

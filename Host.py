@@ -43,10 +43,10 @@ def get_connected():
     conn.close()
 
 
-connectionThread = threading.Thread(target=get_connected)
-connectionThread.start()
+connectionThread = threading.Thread(target=get_connected, daemon=True)
 
 
 if __name__ == '__main__':
+    connectionThread.start()
     dialog.show()
     sys.exit(app.exec_())
