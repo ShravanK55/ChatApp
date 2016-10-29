@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="Icons">
+    <file>SendButton.png</file>
+  </qresource>
+</RCC>

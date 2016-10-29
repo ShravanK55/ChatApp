@@ -13,13 +13,22 @@
   <property name="windowTitle">
    <string>ChatApp</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(22, 22, 22);</string>
+  </property>
   <widget class="QPushButton" name="sendButton">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
-     <x>490</x>
-     <y>390</y>
-     <width>131</width>
-     <height>71</height>
+     <x>540</x>
+     <y>380</y>
+     <width>75</width>
+     <height>75</height>
     </rect>
    </property>
    <property name="font">
@@ -28,31 +37,46 @@
      <pointsize>14</pointsize>
     </font>
    </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Icons/SendButton.png);
+border: none;</string>
+   </property>
    <property name="text">
-    <string>Send</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPlainTextEdit" name="messageEntryBox">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>390</y>
-     <width>451</width>
-     <height>71</height>
+     <y>380</y>
+     <width>501</width>
+     <height>81</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(230, 255, 244);</string>
+   </property>
   </widget>
-  <widget class="QTextBrowser" name="textBrowser">
+  <widget class="QListWidget" name="messagesList">
    <property name="geometry">
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>601</width>
-     <height>351</height>
+     <width>591</width>
+     <height>341</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(230, 255, 244);</string>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="ChatAppResources.qrc"/>
+ </resources>
  <connections/>
 </ui>

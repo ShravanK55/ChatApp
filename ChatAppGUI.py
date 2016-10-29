@@ -16,5 +16,9 @@ class ChatAppGUI(Ui_ChatApp):
     def clear_message_box(self):
         self.messageEntryBox.clear()
 
-    def add_to_browser(self, text):
-        self.textBrowser.insertPlainText(text + '\n')
+    def add_to_message_list(self, text, color):
+        item_color = QtGui.QColor()
+        item_color.setRgb(color[0], color[1], color[2])
+        item = QtWidgets.QListWidgetItem(text)
+        item.setBackground(QtGui.QBrush(item_color))
+        self.messagesList.addItem(item)
