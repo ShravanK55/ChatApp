@@ -15,7 +15,7 @@ client_socket.settimeout(2)
 # Mouse Events
 def click_action():
     entry_text = chat_app.get_message()
-    qt_load_entry(chat_app, "You: " + entry_text, color=self_color)
+    qt_load_entry_client(chat_app, "You: " + entry_text, color=self_color)
     chat_app.clear_message_box()
     client_socket.send(bytes(entry_text, "UTF-8"))
 
@@ -29,10 +29,10 @@ def chat_client():
     try:
         client_socket.connect((host, port))
     except:
-        qt_load_entry(chat_app, "Unable to connect!", color=server_color)
+        qt_load_entry_client(chat_app, "Unable to connect!", color=server_color)
         sys.exit()
 
-    qt_load_entry(chat_app, "Connected to chat room! You may now send messages.", color=server_color)
+    qt_load_entry_client(chat_app, "Connected to chat room! You may now send messages.", color=server_color)
 
     while 1:
         socket_list = [client_socket]
@@ -43,10 +43,10 @@ def chat_client():
             if sock == client_socket:
                 data = sock.recv(recv_buffer)
                 if not data:
-                    qt_load_entry(chat_app, "Disconnected from chat server!", color=server_color)
+                    qt_load_entry_client(chat_app, "Disconnected from chat server!", color=server_color)
                     sys.exit()
                 else:
-                    qt_load_entry(chat_app, data.decode("UTF-8"), color=partner_color)
+                    qt_load_entry_client(chat_app, data.decode("UTF-8"), color=partner_color)
 
 
 client_thread = threading.Thread(target=chat_client, daemon=True)
