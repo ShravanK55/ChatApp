@@ -28,7 +28,7 @@ def send_click_action():
     entry_text = chat_app.get_message()
     qt_load_entry_client(chat_app, "You: " + entry_text, color=self_color)
     chat_app.clear_message_box()
-    client_socket.send(bytes(entry_text, "UTF-8"))
+    client_socket.send(bytes(name + ": " + entry_text, "UTF-8"))
 
 
 app = QtWidgets.QApplication(sys.argv)
