@@ -6,6 +6,7 @@ import select
 # Host Socket Setup
 host = '127.0.0.1'
 port = 8001
+name = 'User'
 recv_buffer = 1024
 
 client_socket = socket(AF_INET, SOCK_STREAM)
@@ -13,7 +14,17 @@ client_socket.settimeout(2)
 
 
 # Mouse Events
-def click_action():
+def connect_click_action():
+    global host, port, name
+    host = login_app.get_host()
+    port = login_app.get_port()
+    name = login_app.get_name()
+    login_dialog.close()
+    chat_dialog.show()
+    client_thread.start()
+
+
+def send_click_action():
     entry_text = chat_app.get_message()
     qt_load_entry_client(chat_app, "You: " + entry_text, color=self_color)
     chat_app.clear_message_box()
@@ -21,8 +32,10 @@ def click_action():
 
 
 app = QtWidgets.QApplication(sys.argv)
-dialog = QtWidgets.QDialog()
-chat_app = ChatAppGUI(dialog, click_action=click_action)
+login_dialog = QtWidgets.QDialog()
+login_app = ChatLoginGUI(login_dialog, click_action=connect_click_action)
+chat_dialog = QtWidgets.QDialog()
+chat_app = ChatAppGUI(chat_dialog, click_action=send_click_action)
 
 
 def chat_client():
@@ -53,6 +66,5 @@ client_thread = threading.Thread(target=chat_client, daemon=True)
 
 
 if __name__ == '__main__':
-    client_thread.start()
-    dialog.show()
+    login_dialog.show()
     sys.exit(app.exec_())
