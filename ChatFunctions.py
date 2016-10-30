@@ -2,9 +2,9 @@ from socket import *
 from ChatAppGUI import *
 
 
-server_color = (250, 250, 250)
-self_color = (225, 225, 225)
-partner_color = (200, 200, 200)
+server_color = (100, 100, 100)
+self_color = (75, 75, 75)
+partner_color = (100, 100, 100)
 
 
 def qt_load_entry(chat_app, entry_text, color):

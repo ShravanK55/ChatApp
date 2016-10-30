@@ -26,14 +26,23 @@ class Ui_ChatApp(object):
 "border: none;")
         self.sendButton.setText("")
         self.sendButton.setObjectName("sendButton")
-        self.messageEntryBox = QtWidgets.QPlainTextEdit(ChatApp)
-        self.messageEntryBox.setGeometry(QtCore.QRect(20, 380, 501, 81))
-        self.messageEntryBox.setStyleSheet("background-color: rgb(230, 255, 244);")
-        self.messageEntryBox.setObjectName("messageEntryBox")
         self.messagesList = QtWidgets.QListWidget(ChatApp)
         self.messagesList.setGeometry(QtCore.QRect(20, 20, 591, 341))
-        self.messagesList.setStyleSheet("background-color: rgb(230, 255, 244);")
+        font = QtGui.QFont()
+        font.setFamily("Source Sans Pro")
+        font.setPointSize(11)
+        self.messagesList.setFont(font)
+        self.messagesList.setStyleSheet("background-color: rgb(77, 77, 77);\n"
+"color: rgb(220, 220, 220);")
         self.messagesList.setObjectName("messagesList")
+        self.messageEntryBox = QtWidgets.QTextEdit(ChatApp)
+        self.messageEntryBox.setGeometry(QtCore.QRect(20, 380, 501, 81))
+        font = QtGui.QFont()
+        font.setFamily("Calibri")
+        font.setPointSize(11)
+        self.messageEntryBox.setFont(font)
+        self.messageEntryBox.setStyleSheet("color: rgb(232, 232, 232);")
+        self.messageEntryBox.setObjectName("messageEntryBox")
 
         self.retranslateUi(ChatApp)
         QtCore.QMetaObject.connectSlotsByName(ChatApp)
@@ -41,5 +50,10 @@ class Ui_ChatApp(object):
     def retranslateUi(self, ChatApp):
         _translate = QtCore.QCoreApplication.translate
         ChatApp.setWindowTitle(_translate("ChatApp", "ChatApp"))
+        self.messageEntryBox.setHtml(_translate("ChatApp", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Calibri\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
 
 import ChatAppResources_rc
