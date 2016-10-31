@@ -53,7 +53,7 @@ border: none;</string>
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>591</width>
+     <width>421</width>
      <height>341</height>
     </rect>
    </property>
@@ -107,6 +107,20 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="placeholderText">
     <string>Enter a message...</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="nameList">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>20</y>
+     <width>160</width>
+     <height>340</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(77, 77, 77);
+color: rgb(220, 220, 220);</string>
    </property>
   </widget>
  </widget>
