@@ -7,7 +7,7 @@ import json
 # Host Socket Setup
 host = '127.0.0.1'
 port = 8001
-name = 'User'
+name = ''
 recv_buffer = 1024
 
 client_socket = socket(AF_INET, SOCK_STREAM)
@@ -24,6 +24,44 @@ def connect_click_action():
     name = login_app.get_name()
 
     message['name'] = name
+    message['content'] = name
+    message['action'] = 'CheckName'
+
+    temp_socket = socket(AF_INET, SOCK_STREAM)
+    temp_socket.settimeout(2)
+
+    try:
+        temp_socket.connect((host, port))
+    except error:
+        login_app.show_error("Could not connect to this host and address.")
+        return
+
+    message_to_send = json.dumps(message)
+    temp_socket.send(bytes(message_to_send, "UTF-8"))
+
+    try:
+        data = temp_socket.recv(recv_buffer)
+        if not data:
+            login_app.show_error("Could not connect to the server!")
+            sys.exit()
+        else:
+            result = data.decode("UTF-8")
+            if result == "Taken":
+                login_app.show_error("This user name is taken. Please use another one.")
+                return
+    except error:
+        login_app.show_error("Could not connect to the server!")
+        sys.exit()
+
+    try:
+        message['action'] = 'TempDisconnect'
+        message_to_send = json.dumps(message)
+        temp_socket.send(bytes(message_to_send, "UTF-8"))
+    except error:
+        login_app.show_error("Error in connecting to the server.")
+        sys.exit()
+
+    temp_socket.close()
 
     login_dialog.close()
     chat_dialog.show()
@@ -103,12 +141,14 @@ def handle_message(msg):
                 for n in names:
                     qt_add_name(chat_app, name=n)
             else:
-                qt_add_name(chat_app, name=received_message['name'])
-                qt_load_entry_client(chat_app, received_message['content'], color=server_color)
+                if received_message['name'] != '':
+                    qt_add_name(chat_app, name=received_message['name'])
+                    qt_load_entry_client(chat_app, received_message['content'], color=server_color)
 
         elif received_message['action'] == 'Disconnected':
-            qt_remove_name(chat_app, name=received_message['name'])
-            qt_load_entry_client(chat_app, received_message['content'], color=server_color)
+            if received_message['name'] != '':
+                qt_remove_name(chat_app, name=received_message['name'])
+                qt_load_entry_client(chat_app, received_message['content'], color=server_color)
 
 
 client_thread = threading.Thread(target=chat_client, daemon=True)

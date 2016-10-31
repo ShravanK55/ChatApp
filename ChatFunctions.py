@@ -2,6 +2,7 @@ from socket import *
 from ChatAppGUI import *
 from ChatServerGUI import *
 from ChatLoginGUI import *
+from ChatCreateServerGUI import *
 
 
 server_color = (100, 100, 100)

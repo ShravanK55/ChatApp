@@ -45,7 +45,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>80</y>
+     <y>72</y>
      <width>45</width>
      <height>15</height>
     </rect>
@@ -69,7 +69,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>110</y>
+     <y>102</y>
      <width>45</width>
      <height>15</height>
     </rect>
@@ -93,7 +93,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>140</y>
+     <y>132</y>
      <width>45</width>
      <height>15</height>
     </rect>
@@ -117,9 +117,9 @@
    <property name="geometry">
     <rect>
      <x>120</x>
-     <y>185</y>
+     <y>190</y>
      <width>80</width>
-     <height>31</height>
+     <height>30</height>
     </rect>
    </property>
    <property name="font">
@@ -139,7 +139,7 @@
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>78</y>
+     <y>70</y>
      <width>190</width>
      <height>20</height>
     </rect>
@@ -160,7 +160,7 @@
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>108</y>
+     <y>100</y>
      <width>190</width>
      <height>20</height>
     </rect>
@@ -176,7 +176,7 @@
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>138</y>
+     <y>130</y>
      <width>190</width>
      <height>20</height>
     </rect>
@@ -186,6 +186,25 @@
    </property>
    <property name="text">
     <string>User</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="errorLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>160</y>
+     <width>280</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 76, 76);</string>
+   </property>
+   <property name="text">
+    <string>This username is already taken! Please use another name.</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>
